@@ -1,10 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:todo_app_firebase/Pages/RegistrationScreen.dart';
+import 'package:todo_app_firebase/Pages/LoginScreen.dart';
 import 'package:todo_app_firebase/Widgets/SocialSignInWidgetRow.dart';
 import 'package:velocity_x/velocity_x.dart';
-class LoginScreen extends StatelessWidget {
+class RegistrationScreen extends StatelessWidget {
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -28,9 +29,65 @@ class LoginScreen extends StatelessWidget {
                     Container(
                         height: 100,
                         width: 100,
-                        child: Image.asset('Images/Assets/TodoLogo.png')),
+                        child: Image.asset("Images/Assets/TodoLogo.png")),
                     HeightBox(10),
                     "Login".text.color(Colors.white).size(20).make(),
+                    HeightBox(
+                        20
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.fromLTRB(30, 0, 30, 0),
+                      child: TextField(
+                        decoration: InputDecoration(
+                          hintText: 'First Name',
+                          hintStyle: TextStyle(color: Colors.white),
+                          enabledBorder: OutlineInputBorder(
+                            borderRadius: new BorderRadius.circular(10.0),
+                            borderSide: BorderSide(
+                                color: Colors.white
+                            ),
+                          ),
+                          focusedBorder: OutlineInputBorder(
+                              borderRadius: new BorderRadius.circular(10.0),
+                              borderSide: BorderSide(
+                                  color: Colors.blue[400]
+                              )
+                          ),
+                          isDense: true,                      // Added this
+                          contentPadding: EdgeInsets.fromLTRB(10, 20, 10, 10),
+                        ),
+                        cursorColor: Colors.white,
+                        style: TextStyle(color: Colors.white),
+                      ),
+                    ),
+                    HeightBox(
+                        20
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.fromLTRB(30, 0, 30, 0),
+                      child: TextField(
+                        decoration: InputDecoration(
+                          hintText: 'Last Name',
+                          hintStyle: TextStyle(color: Colors.white),
+                          enabledBorder: OutlineInputBorder(
+                            borderRadius: new BorderRadius.circular(10.0),
+                            borderSide: BorderSide(
+                                color: Colors.white
+                            ),
+                          ),
+                          focusedBorder: OutlineInputBorder(
+                              borderRadius: new BorderRadius.circular(10.0),
+                              borderSide: BorderSide(
+                                  color: Colors.blue[400]
+                              )
+                          ),
+                          isDense: true,                      // Added this
+                          contentPadding: EdgeInsets.fromLTRB(10, 20, 10, 10),
+                        ),
+                        cursorColor: Colors.white,
+                        style: TextStyle(color: Colors.white),
+                      ),
+                    ),
                     HeightBox(
                         20
                     ),
@@ -90,11 +147,11 @@ class LoginScreen extends StatelessWidget {
                     HeightBox(20),
                     GestureDetector(
                         onTap: (){
-                          print("Login Clicked Event");
+                          print("Sign up Clicked Event");
                         },
-                        child: "Login".text.white.light.xl.makeCentered().box.white.shadowOutline(outlineColor: Colors.grey).color(Color(0XFFFF0772)).roundedLg.make().w(150).h(40)),
-                    HeightBox(20),
-                    "Login with".text.white.makeCentered(),
+                        child: "Sign-Up".text.white.light.xl.makeCentered().box.white.shadowOutline(outlineColor: Colors.grey).color(Color(0XFFFF0772)).roundedLg.make().w(150).h(40)),
+                    HeightBox(140),
+                    "Login with".text.black.makeCentered(),
                     SocialSignInWidgetRow()
                   ],
                 ),
@@ -104,14 +161,14 @@ class LoginScreen extends StatelessWidget {
         ),
         bottomNavigationBar: GestureDetector(
           onTap: (){
-            Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>RegistrationScreen()));
+            Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>LoginScreen()));
           },
           child: RichText(text: TextSpan(
             text: 'New User?',
             style: TextStyle(fontSize: 15.0, color: Colors.black),
             children: <TextSpan>[
               TextSpan(
-                text: ' Register Now',
+                text: ' Login Now',
                 style: TextStyle(
                     fontWeight: FontWeight.w600,
                     fontSize: 18,
