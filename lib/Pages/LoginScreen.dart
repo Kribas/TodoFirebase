@@ -2,12 +2,11 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
-import 'package:todo_app_firebase/GetXHelper/FirebaseController.dart';
+import 'package:todo_app_firebase/Controller/authController.dart';
 import 'package:todo_app_firebase/Pages/RegistrationScreen.dart';
-import 'package:todo_app_firebase/Widgets/SocialSignInWidgetRow.dart';
 import 'package:velocity_x/velocity_x.dart';
 
-class LoginScreen extends GetWidget<FirebaseController> {
+class LoginScreen extends GetWidget<AuthController> {
 
   TextEditingController email = TextEditingController();
   TextEditingController password = TextEditingController();
@@ -116,17 +115,13 @@ class LoginScreen extends GetWidget<FirebaseController> {
                         ),
                         HeightBox(20),
                          GestureDetector(
-                            onTap: () async{
-                              if(_formKey.currentState.validate()) {
-
-                                _login();
-                              }
-
+                            onTap: (){
+                                if(_formKey.currentState.validate()) {
+                                  controller.login(email.text, password.text);
+                                }
                             },
                             child: "Login".text.white.light.xl.makeCentered().box.white.shadowOutline(outlineColor: Colors.grey).color(Color(0XFFFF0772)).roundedLg.make().w(150).h(40)),
-                        HeightBox(20),
-                        "Login with".text.white.makeCentered(),
-                        SocialSignInWidgetRow()
+
                       ],
                     ),
                   ),
@@ -137,7 +132,7 @@ class LoginScreen extends GetWidget<FirebaseController> {
         ),
         bottomNavigationBar: GestureDetector(
           onTap: (){
-            Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>RegistrationScreen()));
+            Get.to(RegistrationScreen());
           },
           child: RichText(text: TextSpan(
             text: 'New User?',
@@ -157,7 +152,4 @@ class LoginScreen extends GetWidget<FirebaseController> {
     );
   }
 
-  void _login() {
-    controller.login(email.text,password.text);
-  }
 }

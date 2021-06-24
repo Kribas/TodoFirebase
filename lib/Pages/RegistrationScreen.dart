@@ -2,12 +2,11 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
-import 'package:todo_app_firebase/GetXHelper/FirebaseController.dart';
+import 'package:todo_app_firebase/Controller/authController.dart';
 import 'package:todo_app_firebase/Pages/LoginScreen.dart';
-import 'package:todo_app_firebase/Widgets/SocialSignInWidgetRow.dart';
 import 'package:velocity_x/velocity_x.dart';
 
-class RegistrationScreen extends GetWidget<FirebaseController> {
+class RegistrationScreen extends GetWidget<AuthController>{
 
   final TextEditingController firstname = TextEditingController();
   final TextEditingController lastname = TextEditingController();
@@ -48,7 +47,7 @@ class RegistrationScreen extends GetWidget<FirebaseController> {
                             width: 100,
                             child: Image.asset("Images/Assets/TodoLogo.png")),
                         HeightBox(10),
-                        "Login".text.color(Colors.white).size(20).make(),
+                        "Sign Up".text.color(Colors.white).size(20).make(),
                         HeightBox(
                             20
                         ),
@@ -174,13 +173,10 @@ class RegistrationScreen extends GetWidget<FirebaseController> {
                         GestureDetector(
                             onTap: (){
                               if(_formKey.currentState.validate()) {
-                                RegisterUser();
+                                controller.createUser(firstname.text, lastname.text, email.text, password.text);
                               }
                             },
                             child: "Sign-Up".text.white.light.xl.makeCentered().box.white.shadowOutline(outlineColor: Colors.grey).color(Color(0XFFFF0772)).roundedLg.make().w(150).h(40)),
-                        HeightBox(140),
-                        "Login with".text.black.makeCentered(),
-                        SocialSignInWidgetRow()
                       ],
                     ),
                   ),
@@ -191,7 +187,7 @@ class RegistrationScreen extends GetWidget<FirebaseController> {
         ),
         bottomNavigationBar: GestureDetector(
           onTap: (){
-            Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>LoginScreen()));
+
           },
           child: RichText(text: TextSpan(
             text: 'New User?',
@@ -211,7 +207,5 @@ class RegistrationScreen extends GetWidget<FirebaseController> {
     );
   }
 
-  void RegisterUser() {
-    controller.createUser(firstname.text,lastname.text,email.text,password.text);
-  }
+
 }
